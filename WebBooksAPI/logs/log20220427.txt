@@ -1,0 +1,11 @@
+2022-04-27 00:29:28.607 +01:00 [INF] Now listening on: https://localhost:7150
+2022-04-27 00:29:28.613 +01:00 [INF] Now listening on: http://localhost:5150
+2022-04-27 00:29:28.619 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-27 00:29:28.620 +01:00 [INF] Hosting environment: Development
+2022-04-27 00:29:28.620 +01:00 [INF] Content root path: C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\
+2022-04-27 00:29:33.067 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7150/swagger/index.html - -
+2022-04-27 00:29:33.734 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7150/swagger/index.html - - - 200 - text/html;charset=utf-8 670.6496ms
+2022-04-27 00:29:33.830 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7150/_framework/aspnetcore-browser-refresh.js - -
+2022-04-27 00:29:33.844 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7150/_framework/aspnetcore-browser-refresh.js - - - 200 11980 application/javascript;+charset=utf-8 13.7519ms
+2022-04-27 00:29:34.595 +01:00 [INF] Request starting HTTP/2 GET https://localhost:7150/swagger/v1/swagger.json - -
+2022-04-27 00:29:34.780 +01:00 [INF] Request finished HTTP/2 GET https://localhost:7150/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 185.0804ms

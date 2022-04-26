@@ -1,0 +1,17 @@
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Manager.deps.json
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Manager.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Manager.pdb
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Core.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Core.pdb
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.csproj.AssemblyReference.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.AssemblyInfoInputs.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.AssemblyInfo.cs
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.csproj.CoreCompileInputs.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.csproj.CopyComplete
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\refint\Manager.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\Manager.pdb
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\obj\Debug\net6.0\ref\Manager.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Core.Shared.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Manager\bin\Debug\net6.0\Core.Shared.pdb

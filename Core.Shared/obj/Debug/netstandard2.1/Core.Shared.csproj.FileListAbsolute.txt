@@ -1,0 +1,10 @@
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\bin\Debug\netstandard2.1\Core.Shared.deps.json
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\bin\Debug\netstandard2.1\Core.Shared.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\bin\Debug\netstandard2.1\Core.Shared.pdb
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.csproj.AssemblyReference.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.AssemblyInfoInputs.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.AssemblyInfo.cs
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.dll
+C:\Users\Marki\source\repos\WebBooksAPI\Core.Shared\obj\Debug\netstandard2.1\Core.Shared.pdb

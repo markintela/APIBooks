@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "PyNGHVBTj1fax/WfjP874F0vmdyPeHGQVKB05C+mSJF9qIMtkflNmTYBslEL/zpUh4PfgiM2u5UAA9GbWhtvvg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Marki\\source\\repos\\WebBooksAPI\\Manager\\Manager.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Marki\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
+    "C:\\Users\\Marki\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
