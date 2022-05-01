@@ -81,3 +81,6 @@ C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\AutoMapper.
 C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Core.Shared.dll
 C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Core.Shared.pdb
 C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Marki\source\repos\WebBooksAPI\WebBooksAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll

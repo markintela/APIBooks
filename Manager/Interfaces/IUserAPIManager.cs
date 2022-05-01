@@ -17,7 +17,7 @@ namespace Manager.Interfaces
 
         Task<UserAPIView> InsertAsync(NewUserAPI userAPI);
 
-        Task<UserAPIView> UpdateMedicoAsync(UserAPI userAPI);
+        Task<UserAPIView> UpdateUserAPIAsync(UserAPI userAPI);
 
         Task<UserAPILogged> ValidaUserAPIEGeraTokenAsync(UserAPI userAPI);
     }

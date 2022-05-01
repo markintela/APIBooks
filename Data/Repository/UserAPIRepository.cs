@@ -22,7 +22,7 @@ namespace Data.Repository
 
         public async Task<IEnumerable<UserAPI>> GetAsync()
         {
-            return await _context.UsersAPI.ToListAsync();
+            return await _context.UsersAPI.Include(p => p.userProfiles).ToListAsync();
         }
 
         public async Task<UserAPI> GetAsync(string login)

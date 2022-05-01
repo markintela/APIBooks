@@ -48,8 +48,7 @@ namespace WebBooksAPI.Controllers
         {
             try 
             {
-                var library = await _libraryManager.GetLibraryAsync(id);
-                var teste = Response.Body;
+                var library = await _libraryManager.GetLibraryAsync(id);       
                 if (library == null) { return NotFound(); }
                 _logger.LogInformation("Success::: {@library}", library);
                 return Ok(library);
@@ -87,7 +86,7 @@ namespace WebBooksAPI.Controllers
         {
 
             await _libraryManager.DeleteLibraryAsync(id);
-            return NoContent();
+            return NotFound();
             
         }
     }
