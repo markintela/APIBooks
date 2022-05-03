@@ -31,53 +31,56 @@ namespace WebBooksAPI.Controllers
 
             if(userLogged == null)
             {
+                throw new ApplicationException("Login not created!");
                 return Unauthorized();
             }
+            _logger.LogInformation("Login success::: {@userLogged}", userLogged.Login);
             return Ok(userLogged);
         }
-
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
-        {
-            try
-            {
-                //var userAPI = await _userAPIManager.GetAsync(id);
-                //if (userAPI == null) { return NotFound(); }
-                //_logger.LogInformation("Success::: {@library}", library);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                //_logger.LogError(ex, ex.Message);
-                return BadRequest();
-            }
-
+        {                         
+             var userAPI = await _userAPIManager.GetAsync(id);
+             if (userAPI == null) {
+                throw new ApplicationException("User not found!");
+             }
+             _logger.LogInformation("Data return success::: {@userLogged}", userAPI);
+             return Ok(userAPI);                  
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, Manager")]
         [HttpGet]
         public async Task<ActionResult> Get()
         {          
             var userAPI = await _userAPIManager.GetAsync();
+            if (userAPI == null) {
+                throw new ApplicationException("The list is empty!");
+            }
             return Ok(userAPI);
 
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> Post(NewUserAPI newUserAPI)
         {
             var userCreated = await _userAPIManager.InsertAsync(newUserAPI);
-
+            if (userCreated == null) {
+                throw new ApplicationException("User not created!");
+            }
+            _logger.LogInformation("Data return success::: {@userCreated}", userCreated.Login);
             return CreatedAtAction(nameof(Get), new {login = newUserAPI.Login}, userCreated);
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

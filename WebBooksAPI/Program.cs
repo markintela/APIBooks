@@ -10,8 +10,19 @@ using Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WebBooksAPI.Configurations;
+using WebBooksAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var chave = builder.Configuration.GetSection("JWT:Secret").Value;
+var issuer = builder.Configuration.GetSection("JWT:Issuer").Value;
+var audience = builder.Configuration.GetSection("JWT:Audience").Value;
+var database = builder.Configuration.GetConnectionString("DBConnection");
+
+
+// Middleware erros
+builder.Services.AddTransient<ExceptionHadlingMiddleware>();
 
 // Log Config
 builder.Host.UseSerilog((ctx, config) => config
@@ -24,83 +35,27 @@ builder.Host.UseSerilog((ctx, config) => config
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
+// Auto Mapper Config 
+builder.Services.AddAutoMapperConfiguration();
 
 // Dependecy Injection
-builder.Services.AddAutoMapper(typeof(NewLibraryMappingProfile));
-builder.Services.AddScoped<ILibraryRepository, LibraryRepository>();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddScoped<IUserAPIRepository, UserAPIRepository>();
-builder.Services.AddScoped<ILibraryManager, LibraryManager>();
-builder.Services.AddScoped<IBookManager, BookManager>();
-builder.Services.AddScoped<IUserAPIManager, UserAPIManager>();
+builder.Services.AddDependencyInjectionConfiguration();
 
-
-builder.Services.AddSingleton<IJWTService , JWTService>();
-var chave = Encoding.ASCII.GetBytes(builder.Configuration.GetSection("JWT:Secret").Value);
-var issuer = builder.Configuration.GetSection("JWT:Issuer").Value;
-var audience = builder.Configuration.GetSection("JWT:Audience").Value;
-
-builder.Services.AddAuthentication(p =>
-{
-   p.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-   p.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer( p=>
-    {
-        p.RequireHttpsMetadata = false;
-        p.SaveToken = true;
-        p.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(chave),
-            ValidateIssuer = true,
-            ValidIssuer =  issuer,
-            ValidAudience = audience,
-            ValidateLifetime  = true
-        };
-    }   
-);
-
-
+// JWT Config
+builder.Services.AddJWTConfigurationonfiguration(chave,issuer,audience);
 
 // Database services
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DBConnection"));
+    options.UseSqlServer(database);
 });
 
 // Swagger Configs
-builder.Services.AddSwaggerGen(c =>
-    {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title="API Books-Library", Version="V1" });
-        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-            In = ParameterLocation.Header,
-            Description = "Insert Token",
-            Name = "Authorization",
-            Type = SecuritySchemeType.ApiKey
-        });
+builder.Services.AddSwaggerConfiguration();
 
-        c.AddSecurityRequirement(new OpenApiSecurityRequirement {
-                {
-                    new OpenApiSecurityScheme
-                    {
-                        Reference= new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id ="Bearer"
-                        }
-                    },
-                        Array.Empty<string>()
-                    }
-            });
-    }
- );
 
 var app = builder.Build();
 
-
-
-app.UseExceptionHandler("/error");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -108,12 +63,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 app.UseCors();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
-
 app.MapControllers();
+// Exceeption Handling
+app.UseMiddleware<ExceptionHadlingMiddleware>();
 
 app.Run();

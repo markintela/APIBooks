@@ -2,6 +2,7 @@
 using Core.Shared.ModelViews;
 using Core.Shared.ModelViews.Library;
 using Manager.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -22,53 +23,49 @@ namespace WebBooksAPI.Controllers
             _libraryManager = libraryManager;
             _logger = logger;
         }
-       
+        
         [HttpGet]
+        [Authorize(Roles = "Admin, Manager, Employer")]
         public async Task<IActionResult> Get()
         {
-            try
-            {
+            
                 var libraries = await _libraryManager.GetAllLibrariesAsync();
           
-                if(libraries == null) { return NotFound(); }
-                _logger.LogInformation("Success::: {@libraries}", libraries);
-                return Ok(libraries);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, ex.Message);
-                return BadRequest();
-            }     
-          
+                if(libraries == null) {
+                    throw new KeyNotFoundException("Library list is empty");
+                }
+                _logger.LogInformation("Data return success::: {@libraries}", libraries);
+                return Ok(libraries);                    
+         
         }
 
-      
+        [Authorize(Roles = "Admin, Manager, Employer")]
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            try 
-            {
                 var library = await _libraryManager.GetLibraryAsync(id);       
-                if (library == null) { return NotFound(); }
-                _logger.LogInformation("Success::: {@library}", library);
-                return Ok(library);
-            }
-            catch (Exception ex) {
-                _logger.LogError(ex, ex.Message);
-                return BadRequest();
-            }
+                if (library == null) {                                  
+                    throw new KeyNotFoundException("Library not found!");                    
+                }
+                _logger.LogInformation("Data return success::: => {@library}", library);
+                return Ok(library);       
             
         }
 
-  
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Post(NewLibrary newLibrary)
         {
             var libraryToCreate = await _libraryManager.CreateLibraryAsync(newLibrary);
+            if (libraryToCreate == null)
+            {
+                throw new ApplicationException("Library not created!");              
+            }
+            _logger.LogInformation("Data created success => {@libraryToCreate}", libraryToCreate);
             return CreatedAtAction(nameof(Get), new { id = libraryToCreate.Id}, libraryToCreate);
         }
 
-   
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(AlterLibrary library)
         {
@@ -76,18 +73,18 @@ namespace WebBooksAPI.Controllers
 
             if(libraryToUpdate == null)
             {
-                return NotFound();
+                throw new KeyNotFoundException("Library not found!");
             }
+            _logger.LogInformation("Data Updated => {@libraryToUpdate}", libraryToUpdate);
             return Ok(libraryToUpdate);
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-
+            _logger.LogInformation("Library deleted!");
             await _libraryManager.DeleteLibraryAsync(id);
-            return NotFound();
-            
+            return NotFound();           
         }
     }
 }

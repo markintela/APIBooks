@@ -29,7 +29,7 @@ namespace Data.Repository
         public async Task<Library> GetLibraryAsync(int id)
         {
 
-            return await _dataContext.Libraries.FindAsync(id);
+            return await _dataContext.Libraries.Include(b => b.Books).SingleOrDefaultAsync(p => p.Id == id);
         }
 
 
@@ -47,8 +47,8 @@ namespace Data.Repository
             var booksearch = new List<Book>();
             foreach (var book in library.Books)
             {
-                var bookSearch = await _dataContext.Books.FindAsync(book.Id);
-                booksearch.Add(bookSearch);
+                var bookFound = await _dataContext.Books.FindAsync(book.Id);
+                booksearch.Add(bookFound);
             }
             library.Books = booksearch;
         }

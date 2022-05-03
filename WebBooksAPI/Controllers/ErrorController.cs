@@ -1,17 +1,21 @@
 ﻿using Core.Model;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace WebBooksAPI.Controllers
 {
     [ApiExplorerSettings(IgnoreApi = true)]
     [ApiController]
     public class ErrorController : ControllerBase
-    {
-        [Route("error")]
+    {      
+
+       [Route("error")]
         public ErrorResponse Error()
         {
             Response.StatusCode = 500;
-            return new ErrorResponse();
+            var id = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+            string er = string.Empty;
+            return new ErrorResponse(id, er);
 
         }
     }

@@ -30,9 +30,9 @@ namespace Manager.Implementation
             return _mapper.Map<IEnumerable<UserAPI>, IEnumerable<UserAPIView>>( await _userAPIRepository.GetAsync());
         }
 
-        public async Task<UserAPIView> GetAsync(string login)
+        public async Task<UserAPIView> GetAsync(int id)
         {
-            return _mapper.Map<UserAPIView>(await _userAPIRepository.GetAsync(login));
+            return _mapper.Map<UserAPIView>(await _userAPIRepository.GetAsync(id));
         }
 
         public async Task<UserAPIView> InsertAsync(NewUserAPI newUserAPI)

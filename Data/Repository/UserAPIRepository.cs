@@ -25,6 +25,13 @@ namespace Data.Repository
             return await _context.UsersAPI.Include(p => p.userProfiles).ToListAsync();
         }
 
+        public async Task<UserAPI> GetAsync(int id)
+        {
+            return await _context.UsersAPI
+                .Include(p => p.userProfiles)
+                .SingleOrDefaultAsync(p => p.Id == id);
+        }
+
         public async Task<UserAPI> GetAsync(string login)
         {
             return await _context.UsersAPI

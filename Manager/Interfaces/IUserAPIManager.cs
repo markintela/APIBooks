@@ -13,7 +13,7 @@ namespace Manager.Interfaces
 
         Task<IEnumerable<UserAPIView>> GetAsync();
 
-        Task<UserAPIView> GetAsync(string login);
+        Task<UserAPIView> GetAsync(int id);
 
         Task<UserAPIView> InsertAsync(NewUserAPI userAPI);
 

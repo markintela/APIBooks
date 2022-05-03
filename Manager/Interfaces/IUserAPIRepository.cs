@@ -12,6 +12,8 @@ namespace Manager.Interfaces
 
         Task<IEnumerable<UserAPI>> GetAsync();
 
+        Task<UserAPI> GetAsync(int id);
+
         Task<UserAPI> GetAsync(string login);
 
         Task<UserAPI> InsertAsync(UserAPI userAPI);

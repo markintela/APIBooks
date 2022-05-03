@@ -8,14 +8,14 @@ namespace Core.Model
 {
     public class ErrorResponse
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public DateTime Date { get; set; }
         public string  Message { get; set; }
 
-        public ErrorResponse() { 
-            Id = Guid.NewGuid();
+        public ErrorResponse(string id, string message) { 
+            Id = id;
             Date = DateTime.Now;
-            Message = "Unexpected error.";
+            Message = message;
         }
     }
 }
